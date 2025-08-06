@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        function getComputerChoice() {
+            const choices = ["rock", "paper", "scissors"];
+            return choices[Math.floor(Math.random() * 3)];
+        }
+        function getHumanChoice() {
+            const input = prompt("Enter 1 for rock, 2 for paper, or 3 for scissors:");
+            if (input === "1") {
+                return "rock";
+            } else if (input === "2") {
+                return "paper";
+            } else if (input === "3") {
+                return "scissors";
+            } else {
+                alert("Invalid input! Please enter 1, 2, or 3.");
+                return getHumanChoice(); // Recursively prompt again on invalid input
+            }
+        }
+
+        function playRound(humanChoice, computerChoice) {
+            if (humanChoice === computerChoice) {
+                alert(`It's a tie! Both chose ${humanChoice}.`);
+            } else if (
+                (humanChoice === "rock" && computerChoice === "scissors") ||
+                (humanChoice === "paper" && computerChoice === "rock") ||
+                (humanChoice === "scissors" && computerChoice === "paper")
+            ) {
+                humanScore++;
+                alert(`You win this round! ${humanChoice} beats ${computerChoice}.`);
+            } else {
+                computerScore++;
+                alert(`Computer wins this round! ${computerChoice} beats ${humanChoice}.`);
+            }
+            alert(`Scores:\nYou: ${humanScore}\nComputer: ${computerScore}`);
+        }
+
+        let humanScore = 0;
+        let computerScore = 0;
+        
+
+        for (let i = 0; i < 5; i++) {
+            let humanSelection = getHumanChoice();
+            let computerSelection = getComputerChoice();
+            playRound(humanSelection, computerSelection);
+        }
+
+
+    </script>
+</body>
+</html>
